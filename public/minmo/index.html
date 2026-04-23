@@ -177,6 +177,46 @@
     .footer__links a:hover { color: var(--brand); }
     .footer__copy { font-size: 0.78rem; color: #aaa; }
 
+    /* ===== Animations ===== */
+    /* Hero load */
+    .hero__text { animation: anim-hero 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+    .hero__phone { animation: anim-phone 1s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+    @keyframes anim-hero  { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
+    @keyframes anim-phone { from { opacity:0; transform:translateX(44px) scale(0.95); } to { opacity:1; transform:none; } }
+
+    /* Scroll reveal base */
+    .anim-up, .anim-left, .anim-right { opacity: 0; }
+    .anim-up.in    { animation: reveal-up    0.65s cubic-bezier(0.22,1,0.36,1) var(--anim-delay,0s) both; opacity: 1; }
+    .anim-left.in  { animation: reveal-left  0.65s cubic-bezier(0.22,1,0.36,1) var(--anim-delay,0s) both; opacity: 1; }
+    .anim-right.in { animation: reveal-right 0.65s cubic-bezier(0.22,1,0.36,1) var(--anim-delay,0s) both; opacity: 1; }
+    @keyframes reveal-up    { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:none; } }
+    @keyframes reveal-left  { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:none; } }
+    @keyframes reveal-right { from { opacity:0; transform:translateX(40px); }  to { opacity:1; transform:none; } }
+
+    /* Enhanced hover */
+    .card--icon, .feature {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .card--icon:hover { transform: translateY(-5px); box-shadow: 0 10px 32px rgba(26,79,214,0.11); border-color: rgba(26,79,214,0.2); }
+    .feature:hover    { transform: translateY(-5px); box-shadow: 0 10px 32px rgba(26,79,214,0.11); border-color: rgba(26,79,214,0.2); }
+    .plan { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .plan:not(.plan--featured):hover { transform: translateY(-4px); }
+    .plan--featured:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,79,214,0.28); }
+    .step__num { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .step:hover .step__num { transform: scale(1.12); box-shadow: 0 6px 20px rgba(26,79,214,0.28); }
+    .faq__item { transition: border-color 0.2s; }
+    .faq__item:hover { border-color: rgba(26,79,214,0.3); }
+    .guide-card--good { transition: box-shadow 0.25s ease; }
+    .guide-card--bad  { transition: box-shadow 0.25s ease; }
+    .guide-card--good:hover { box-shadow: 0 6px 20px rgba(5,150,105,0.12); }
+    .guide-card--bad:hover  { box-shadow: 0 6px 20px rgba(239,68,68,0.1); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__text, .hero__phone { animation: none; opacity:1; }
+      .anim-up, .anim-left, .anim-right { opacity: 1 !important; }
+      .anim-up.in, .anim-left.in, .anim-right.in { animation: none; }
+    }
+
     @media (max-width: 700px) {
       .hero__inner { grid-template-columns: 1fr; }
       .hero__phone { display: none; }
@@ -200,7 +240,7 @@
 <!-- ===== Hero ===== -->
 <section class="hero">
   <div class="hero__inner">
-    <div>
+    <div class="hero__text">
       <span class="hero__badge">✦ 2026年 リリース予定</span>
       <h1 class="hero__title">古いスマホが、<br><em>家族の守り手</em>になる。</h1>
       <p class="hero__desc">引き出しで眠っているスマートフォンを、置き型の見守りカメラに。AIが人・ペットを検知して、LINEにすぐ通知します。</p>
@@ -502,8 +542,62 @@
 </footer>
 
 <script>
+  // FAQ toggle
   document.querySelectorAll('.faq__q').forEach(q => {
     q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  // Section headers — staggered within each section
+  document.querySelectorAll('.section-wrap').forEach(sec => {
+    sec.querySelectorAll('.section-label, .section-title, .section-desc').forEach((el, i) => {
+      el.classList.add('anim-up');
+      el.style.setProperty('--anim-delay', `${i * 0.08}s`);
+      obs.observe(el);
+    });
+  });
+
+  // Staggered grids
+  document.querySelectorAll('.steps-grid, .cards-grid, .features-grid, .pricing-grid').forEach(grid => {
+    [...grid.children].forEach((el, i) => {
+      el.classList.add('anim-up');
+      el.style.setProperty('--anim-delay', `${i * 0.09}s`);
+      obs.observe(el);
+    });
+  });
+
+  // Setup guide cards — slide from sides
+  const gc = document.querySelectorAll('.guide-card');
+  if (gc[0]) { gc[0].classList.add('anim-left'); obs.observe(gc[0]); }
+  if (gc[1]) { gc[1].classList.add('anim-right'); obs.observe(gc[1]); }
+
+  // Guide note
+  const gn = document.querySelector('.guide-note');
+  if (gn) { gn.classList.add('anim-up'); gn.style.setProperty('--anim-delay', '0.15s'); obs.observe(gn); }
+
+  // FAQ items
+  document.querySelectorAll('.faq__item').forEach((el, i) => {
+    el.classList.add('anim-up');
+    el.style.setProperty('--anim-delay', `${i * 0.07}s`);
+    obs.observe(el);
+  });
+
+  // Trust bar tags
+  document.querySelectorAll('.trust-tag').forEach((el, i) => {
+    el.classList.add('anim-up');
+    el.style.setProperty('--anim-delay', `${i * 0.07}s`);
+    obs.observe(el);
+  });
+
+  // CTA section
+  document.querySelectorAll('.cta-section h2, .cta-section > p, .cta-section .btn').forEach((el, i) => {
+    el.classList.add('anim-up');
+    el.style.setProperty('--anim-delay', `${i * 0.1}s`);
+    obs.observe(el);
   });
 </script>
 </body>

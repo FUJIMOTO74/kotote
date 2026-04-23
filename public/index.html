@@ -153,6 +153,22 @@
     .footer__links a:hover { color: var(--brand); }
     .footer__copy { font-size: 0.78rem; color: #aaa; }
 
+    /* === Animations === */
+    .hero__label { animation: hero-in 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+    .hero__title  { animation: hero-in 0.7s cubic-bezier(0.22,1,0.36,1) 0.08s both; }
+    .hero__desc   { animation: hero-in 0.7s cubic-bezier(0.22,1,0.36,1) 0.16s both; }
+    @keyframes hero-in { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+
+    .anim-up { opacity: 0; }
+    .anim-up.in { animation: anim-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) var(--anim-delay,0s) both; opacity: 1; }
+    @keyframes anim-fade-up { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__label, .hero__title, .hero__desc { animation: none; opacity:1; transform:none; }
+      .anim-up { opacity:1; }
+      .anim-up.in { animation: none; }
+    }
+
     @media (max-width: 480px) {
       .app-card { flex-direction: column; align-items: flex-start; }
     }
@@ -211,5 +227,24 @@
   <p class="footer__copy">&copy; 2026 Kotote（コトテ）. All rights reserved.</p>
 </footer>
 
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+
+  // Section headers
+  document.querySelectorAll('.section-label, .section-title').forEach((el, i) => {
+    el.classList.add('anim-up');
+    el.style.setProperty('--anim-delay', `${i * 0.08}s`);
+    obs.observe(el);
+  });
+
+  // App cards — staggered
+  document.querySelectorAll('.app-card').forEach((el, i) => {
+    el.classList.add('anim-up');
+    el.style.setProperty('--anim-delay', `${i * 0.12}s`);
+    obs.observe(el);
+  });
+</script>
 </body>
 </html>
