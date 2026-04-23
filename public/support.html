@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>サポート | Kotote（コトテ）</title>
+  <meta name="description" content="Kotote（コトテ）アプリのサポートページ。よくある質問・お問い合わせ先はこちら。" />
+  <style>
+    :root {
+      --brand: #1a4fd6; --brand-pale: #eff4ff; --brand-dim: rgba(26,79,214,0.08);
+      --accent: #059669;
+      --text: #1a1d23; --muted: #6b7280;
+      --border: #e2e5eb; --bg: #ffffff; --bg2: #f7f8fa;
+      --radius-sm: 8px; --radius-md: 14px; --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav__brand { font-size: 1.1rem; font-weight: 800; color: var(--brand); letter-spacing: 1px; text-decoration: none; }
+    .nav__back { font-size: 0.85rem; color: var(--muted); text-decoration: none; }
+    .nav__back:hover { color: var(--brand); }
+
+    .hero { background: var(--brand-pale); padding: 56px 24px 48px; text-align: center; }
+    .hero__label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; color: var(--brand); text-transform: uppercase; margin-bottom: 12px; }
+    .hero__title { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; color: var(--text); margin-bottom: 12px; }
+    .hero__desc { font-size: 0.95rem; color: var(--muted); line-height: 1.8; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .section-wrap { padding: 56px 0; }
+    .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; color: var(--brand); text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 28px; }
+
+    /* App tab */
+    .app-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 10px 16px;
+      margin-bottom: 28px; font-size: 0.88rem; font-weight: 600;
+    }
+
+    /* FAQ */
+    .faq { display: flex; flex-direction: column; gap: 8px; }
+    .faq__item { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+    .faq__q { padding: 16px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq__q:hover { background: var(--bg2); }
+    .faq__q::after { content: '+'; font-size: 1.3rem; color: var(--brand); font-weight: 300; flex-shrink: 0; transition: transform 0.2s; }
+    .faq__item.open .faq__q::after { transform: rotate(45deg); }
+    .faq__a { display: none; padding: 0 20px 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+    .faq__item.open .faq__a { display: block; }
+
+    /* Requirements */
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 20px; }
+    .req-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 20px; }
+    .req-card__label { font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+    .req-card__value { font-size: 0.92rem; font-weight: 600; color: var(--text); }
+
+    /* Contact */
+    .contact-box {
+      background: var(--brand-pale); border: 1px solid rgba(26,79,214,0.18);
+      border-radius: var(--radius-lg); padding: 32px;
+      text-align: center;
+    }
+    .contact-box h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+    .contact-box p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--brand); color: #fff;
+      font-weight: 700; font-size: 0.95rem;
+      padding: 12px 28px; border-radius: var(--radius-sm);
+      text-decoration: none; transition: background 0.2s;
+    }
+    .contact-btn:hover { background: #3b6ef0; }
+    .contact-note { font-size: 0.78rem; color: var(--muted); margin-top: 12px; }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
+    .footer__links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer__links a { font-size: 0.82rem; color: var(--muted); text-decoration: none; }
+    .footer__links a:hover { color: var(--brand); }
+    .footer__copy { font-size: 0.78rem; color: #aaa; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav__brand" href="./">Kotote</a>
+  <a class="nav__back" href="./">← トップへ戻る</a>
+</nav>
+
+<section class="hero">
+  <p class="hero__label">Support</p>
+  <h1 class="hero__title">サポート</h1>
+  <p class="hero__desc">お困りのことがあればお気軽にご連絡ください。</p>
+</section>
+
+<hr class="divider" />
+
+<!-- Minmo FAQ -->
+<section class="section-wrap">
+  <div class="container">
+    <p class="section-label">Minmo</p>
+    <h2 class="section-title">よくある質問</h2>
+
+    <div class="app-tag">🐾 Minmo — 見守りカメラアプリ</div>
+
+    <div class="faq">
+      <div class="faq__item">
+        <div class="faq__q">アプリが起動しない／クラッシュする</div>
+        <p class="faq__a">Android 8.0以上・Google Playサービスが必要です。端末を再起動してからもう一度お試しください。改善しない場合は、アプリをアンインストールして再インストールしてください。</p>
+      </div>
+      <div class="faq__item">
+        <div class="faq__q">LINEに通知が届かない</div>
+        <p class="faq__a">以下を順番に確認してください。①インターネット接続が正常か、②LINEログインが完了しているか、③アプリがバックグラウンドで動作しているか（バッテリー最適化の対象から除外してください）。</p>
+      </div>
+      <div class="faq__item">
+        <div class="faq__q">検知されない・誤検知が多い</div>
+        <p class="faq__a">設定から検知感度を調整してください（BASIC以上のプラン）。カメラの向きや照明の具合によって検知精度が変わります。明るい場所・安定した場所への設置をおすすめします。</p>
+      </div>
+      <div class="faq__item">
+        <div class="faq__q">サブスクリプションの解約方法</div>
+        <p class="faq__a">Google Play → アカウント → 定期購入 → Minmo → 解約 の手順で解約できます。解約後も当月末まで有料機能をご利用いただけます。</p>
+      </div>
+      <div class="faq__item">
+        <div class="faq__q">プランのアップグレード・ダウングレード方法</div>
+        <p class="faq__a">アプリ内の「設定 → プラン」からいつでも変更できます。変更は次回の更新日から適用されます。</p>
+      </div>
+      <div class="faq__item">
+        <div class="faq__q">バッテリーの消耗が激しい</div>
+        <p class="faq__a">常時カメラを使用するため、充電しながらの使用を推奨します。バッテリー最適化の設定でMinmoを「最適化しない」に設定すると、安定して動作します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- 動作環境 -->
+<section class="section-wrap" style="padding-top: 40px;">
+  <div class="container">
+    <p class="section-label">動作環境</p>
+    <h2 class="section-title" style="margin-bottom: 0;">Minmo 動作要件</h2>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card__label">プラットフォーム</div>
+        <div class="req-card__value">Android のみ</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card__label">最低OSバージョン</div>
+        <div class="req-card__value">Android 8.0 以上</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card__label">必要なサービス</div>
+        <div class="req-card__value">Google Playサービス</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card__label">必要な権限</div>
+        <div class="req-card__value">カメラ・インターネット</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- Contact -->
+<section class="section-wrap" style="padding-top: 48px;">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">解決しない場合はこちら</h2>
+    <div class="contact-box">
+      <h3>メールでお問い合わせ</h3>
+      <p>FAQで解決しない場合は、下記よりお問い合わせください。<br>端末情報・アプリバージョン・症状を添えていただくと、スムーズに対応できます。</p>
+      <a class="contact-btn" href="mailto:info@kotote.com?subject=【Minmoサポート】お問い合わせ">
+        info@kotote.com へ送る
+      </a>
+      <p class="contact-note">返信目安：2〜5営業日以内（個人運営のため、お時間をいただく場合があります）</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer__links">
+    <a href="./">ホーム</a>
+    <a href="./minmo/">Minmo</a>
+    <a href="./privacy-policy.html">プライバシーポリシー</a>
+    <a href="./terms.html">利用規約</a>
+  </div>
+  <p class="footer__copy">&copy; 2026 Kotote（コトテ）. All rights reserved.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq__q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+</script>
+</body>
+</html>
