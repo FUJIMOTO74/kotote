@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー | Kotote（コトテ）</title>
+  <style>
+    :root {
+      --brand: #1a4fd6; --brand-pale: #eff4ff;
+      --text: #1a1d23; --muted: #6b7280;
+      --border: #e2e5eb; --bg: #ffffff; --bg2: #f7f8fa;
+      --radius-sm: 8px; --radius-md: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav__brand { font-size: 1.1rem; font-weight: 800; color: var(--brand); letter-spacing: 1px; text-decoration: none; }
+    .nav__back { font-size: 0.85rem; color: var(--muted); text-decoration: none; }
+    .nav__back:hover { color: var(--brand); }
+
+    .content { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+    h1 { font-size: 1.7rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .updated { font-size: 0.82rem; color: var(--muted); margin-bottom: 40px; }
+    h2 {
+      font-size: 1rem; font-weight: 700; color: var(--text);
+      margin: 40px 0 12px; padding: 10px 16px;
+      background: var(--bg2); border-left: 3px solid var(--brand);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    p { font-size: 0.92rem; color: #374151; line-height: 1.85; margin-bottom: 12px; }
+    ul { font-size: 0.92rem; color: #374151; line-height: 1.85; padding-left: 20px; margin-bottom: 12px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--brand); }
+    .note {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 16px 20px;
+      font-size: 0.85rem; color: var(--muted); margin: 16px 0;
+    }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
+    .footer__links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer__links a { font-size: 0.82rem; color: var(--muted); text-decoration: none; }
+    .footer__links a:hover { color: var(--brand); }
+    .footer__copy { font-size: 0.78rem; color: #aaa; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav__brand" href="./">Kotote</a>
+  <a class="nav__back" href="./">← トップへ戻る</a>
+</nav>
+
+<div class="content">
+  <h1>プライバシーポリシー</h1>
+  <p class="updated">最終更新日：2026年4月23日</p>
+
+  <p>Kotote（コトテ、以下「当社」）は、提供するアプリケーション（以下「本アプリ」）における利用者の個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
+
+  <h2>1. 収集する情報と利用目的</h2>
+
+  <p><strong>① LINEアカウント情報</strong></p>
+  <ul>
+    <li>LINEログイン機能を利用する場合、LINEより提供されるユーザーID・表示名を取得します。</li>
+    <li>利用目的：動体検知通知をLINEへ送信するため。端末内にのみ保存し、外部サーバーへは通知処理にのみ使用します。</li>
+  </ul>
+
+  <p><strong>② カメラ映像・画像</strong></p>
+  <ul>
+    <li>動体検知時に端末内でのみ映像を処理します。映像そのものは外部サーバーに送信・保存されません。</li>
+    <li>検知時のJPEG画像は通知送信のために一時保存し、送信成功後に即削除します。</li>
+    <li>送信失敗時は次回送信成功まで端末内に保持されます（自動削除機能は今後実装予定）。</li>
+  </ul>
+
+  <p><strong>③ Firebase Analytics（Google LLC）</strong></p>
+  <ul>
+    <li>画面遷移、監視の開始・停止・時間、検知されたラベル（人・ペット）・回数、通知の送信結果、プラン変更・設定変更などの行動ログを収集します。</li>
+    <li>利用目的：アプリの品質改善・不具合対応のため。個人を特定できる情報は収集しません。</li>
+    <li>Googleの<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>が適用されます。</li>
+  </ul>
+
+  <p><strong>④ Firebase Crashlytics（Google LLC）</strong></p>
+  <ul>
+    <li>アプリのクラッシュ情報・エラーログ、端末OS・バージョン情報を収集します。</li>
+    <li>利用目的：不具合の特定・修正のため。ユーザーの映像・音声・位置情報は収集しません。</li>
+    <li>Googleの<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>が適用されます。</li>
+  </ul>
+
+  <p><strong>⑤ Cloudflare Workers（LINE通知中継）</strong></p>
+  <ul>
+    <li>LINE通知の送信処理に Cloudflare Workers（<code>minmo-notify.easeapps-support.workers.dev</code>）を使用します。</li>
+    <li>検知時のJPEG画像をHTTPS経由でLINEへ送信します。通知送信後に即削除します。</li>
+    <li>画像以外の個人情報はCloudflare Workersでは処理しません。</li>
+    <li>Cloudflareの<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">プライバシーポリシー</a>が適用されます。</li>
+  </ul>
+
+  <p><strong>⑥ アプリ設定情報</strong></p>
+  <ul>
+    <li>検知感度などの設定値を端末内にのみ保存します。外部には送信されません。</li>
+  </ul>
+
+  <h2>2. 使用する権限</h2>
+  <ul>
+    <li><strong>カメラ：</strong>動体検知のための映像取得</li>
+    <li><strong>インターネット：</strong>LINE通知の送信</li>
+  </ul>
+
+  <h2>3. 第三者への提供</h2>
+  <p>当社は、以下の場合を除き、利用者の個人情報を第三者に提供しません。</p>
+  <ul>
+    <li>利用者本人の同意がある場合</li>
+    <li>法令に基づく場合</li>
+  </ul>
+  <p>本アプリは LINE株式会社・Google LLC・Cloudflare Inc. のサービスを利用しており、各社のプライバシーポリシーが適用されます。</p>
+
+  <h2>4. データの保管期間</h2>
+  <ul>
+    <li><strong>LINE通知用JPEG画像：</strong>送信成功後に即削除。送信失敗時は次回送信成功まで端末内に保持。</li>
+    <li><strong>LINEユーザーID：</strong>アプリのアンインストールまたは連携解除時まで端末内に保持。</li>
+    <li><strong>Firebase Analytics / Crashlytics のログ：</strong>各サービスの規定に従います（通常14〜90日）。</li>
+  </ul>
+
+  <h2>5. 子どものプライバシー</h2>
+  <p>本アプリは13歳未満の方を対象としておらず、意図的に13歳未満の個人情報を収集しません。13歳未満のお子様が本アプリを使用していることが判明した場合は、当社までご連絡ください。</p>
+
+  <h2>6. お問い合わせ</h2>
+  <p>プライバシーポリシーに関するお問い合わせは下記までご連絡ください。</p>
+  <p>事業者名：Kotote（コトテ）<br>メールアドレス：<a href="mailto:info@kotote.com">info@kotote.com</a></p>
+
+  <h2>7. 改定について</h2>
+  <p>本ポリシーは必要に応じて改定することがあります。重要な変更がある場合はアプリ内またはこのページにてお知らせします。</p>
+</div>
+
+<footer>
+  <div class="footer__links">
+    <a href="./">ホーム</a>
+    <a href="./terms.html">利用規約</a>
+    <a href="mailto:info@kotote.com">お問い合わせ</a>
+  </div>
+  <p class="footer__copy">&copy; 2026 Kotote（コトテ）. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
