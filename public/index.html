@@ -112,7 +112,9 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 2rem;
       flex-shrink: 0;
+      overflow: hidden;
     }
+    .app-icon img { width: 72px; height: 72px; display: block; }
     .app-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
     .app-info p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
     .app-badges { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
@@ -195,7 +197,7 @@
   <h2 class="section-title">提供アプリ</h2>
 
   <a class="app-card" href="./minmo/">
-    <div class="app-icon">🐾</div>
+    <div class="app-icon"><img src="./assets/minmo-icon.svg" alt="Minmo"></div>
     <div class="app-info">
       <h3>Minmo</h3>
       <p>古いスマートフォンを見守りカメラに。動体検知でLINEに通知します。</p>
